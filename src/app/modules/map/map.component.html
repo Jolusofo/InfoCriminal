@@ -1,0 +1,72 @@
+<div>
+  <h1>Pontos de Criminalidade</h1>
+</div>
+  
+<div class="formularioCaixa">
+  
+<div class="caixaSelecao">
+  <h4>Selecione uma Região da Cidade</h4>
+
+
+<mat-form-field>
+  <mat-label>Por favor selecione bairro</mat-label>
+  <mat-select  [(value)]="bairroSelecionado" >
+    <mat-option *ngFor="let Bairro of Bairros" [value]="Bairro.value" (click)="GetMapa(bairroSelecionado)" >
+      {{Bairro.viewValue}}
+    </mat-option>
+  </mat-select>
+
+</mat-form-field>
+</div>
+
+<div class="caixaSelecao">
+  <h4>Selecione um delito</h4>
+
+
+<mat-form-field>
+  <mat-label>Por favor selecione delito</mat-label>
+  <mat-select  [(value)]="delitoSelecionado" >
+    <mat-option *ngFor="let delito of delitos" [value]="delito.value" (click)="getSelectDelitos(this.delitoSelecionado, this.mesSelecionado, this.anoSelecionado)">
+      {{delito.viewValue}}
+    </mat-option>
+  </mat-select>
+
+</mat-form-field>
+
+
+</div>
+<div class="caixaSelecao">
+  <h4>Selecione um ano</h4>
+  <mat-form-field>
+    <mat-label>Por favor selecione ano</mat-label>
+    <mat-select  [(value)]="anoSelecionado" >
+      <mat-option *ngFor="let ano of anos" [value]="ano.value"  (click)="getSelectDelitos(this.delitoSelecionado, this.mesSelecionado, this.anoSelecionado)" >
+        {{ano.viewValue}}
+      </mat-option>
+    </mat-select>
+  
+  </mat-form-field>
+</div>
+<div class="caixaSelecao">
+  <h4>Selecione um mes</h4>
+  <mat-form-field>
+    <mat-label>Por favor selecione mes</mat-label>
+    <mat-select  [(value)]="mesSelecionado" >
+      <mat-option *ngFor="let mes of meses" [value]="mes.value"  (click)="getSelectDelitos(this.delitoSelecionado, this.mesSelecionado, this.anoSelecionado)" >
+        {{mes.viewValue}}
+      </mat-option>
+    </mat-select>
+  
+  </mat-form-field>
+</div>
+</div>
+<div *ngIf="apareceMapa == true" class="map" leaflet [leafletOptions]="options"></div>
+<div *ngIf="apareceMapa == false" style="display: grid; grid-template-columns:100%;justify-items: center; height: 650px; align-items: center;"><mat-spinner></mat-spinner></div>
+<div style="display: grid; grid-template-columns:50%; margin-top: 20px; padding-bottom: 20px;" >
+  <h4>Observação e orientações</h4>
+  <p>As informações de poligonos chegam de um centro de informações publico, 
+    então as vezes eles podem não apresentar em tela, por favor selecione a
+    região novamente para que seja feito um novo pedido de informações em tela.
+  </p>
+</div>
+

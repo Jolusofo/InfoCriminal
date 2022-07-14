@@ -1,0 +1,68 @@
+.container-detalhes{
+
+  padding-bottom: 5vh;
+}
+.formularioCaixa{
+  display: grid;
+  grid-template-columns:  1fr 2fr 1.4fr 0.5fr;
+   justify-content: center; 
+   justify-items: center;
+    padding-top: 20px;
+}
+
+.caixaSelecao{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  max-width: 300px;
+  min-width: none;
+}
+.stats-cards {
+    .mat-card {
+      overflow: hidden;
+    }
+  }
+  
+  table {
+    width: 100%;
+  }
+  .details{
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center space-between;
+    align-items: center;
+    
+    justify-content: center;
+  }
+  @media (max-width: 1150px)
+{
+  .caixaSelecao{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 0.5fr;
+    max-width: 300px;
+    min-width: none;
+  }
+}
+@media (max-width: 768px)
+{
+  .caixaSelecao{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 0.5fr;
+    max-width: 300px;
+    min-width: none;
+  }
+
+  .formularioCaixa{
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    justify-items: center;
+    padding-top: 20px;
+  }
+  
+
+}
+

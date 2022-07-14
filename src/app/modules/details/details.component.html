@@ -1,0 +1,83 @@
+<div class="container-detalhes">
+  <div>
+    <h1>Ranking de Delitos</h1>
+  </div>
+ <div class="formularioCaixa">
+     <div class="caixaSelecao">
+         <h4>Selecione Ano</h4>
+       
+       
+       <mat-form-field>
+         <mat-label>Por favor selecione ano</mat-label>
+         <mat-select  [(value)]="AnoSelecionado" >
+           <mat-option *ngFor="let Ano of Anos" [value]="Ano.value" >
+             {{Ano.viewValue}}
+           </mat-option>
+         </mat-select>
+       
+       </mat-form-field>
+       </div>
+       <div class="caixaSelecao">
+         <h4>Selecine a forma de visualização</h4>
+       
+       
+       <mat-form-field>
+         <mat-label>Por favor selecione uma das opções</mat-label>
+         <mat-select  [(value)]="VizualizacaoSelecionado" >
+           <mat-option *ngFor="let Tipo of TipoVizualizacao" [value]="Tipo.value" (click)="changesSelect()"  >
+             {{Tipo.viewValue}}
+           </mat-option>
+         </mat-select>
+       
+       </mat-form-field>
+       </div>
+       <div *ngIf="opcaoVizualizacao[indexOpcao].tipo !=='Anual' " class="caixaSelecao" >
+         <h4>Selecione o {{opcaoVizualizacao[indexOpcao].tipo}}</h4>
+       
+       
+       <mat-form-field>
+         <mat-label>Por favor selecione o {{opcaoVizualizacao[indexOpcao].tipo }} </mat-label>
+         <mat-select  [(value)]="SelecionadoVizualizacao" >
+           <mat-option *ngFor="let visualizacao of opcaoVizualizacao[indexOpcao].opcao" [value]="visualizacao.value">
+             {{visualizacao.viewValue}}
+           </mat-option>
+         </mat-select>
+       
+       </mat-form-field>
+       </div>
+       <div>
+         <button mat-raised-button color="primary" (click)="getTable()">Filtrar</button>
+       </div>
+      
+   </div>
+ 
+ <div *ngIf="dataSource && displayedColumns" class="details">
+ <div fxFlex="70">
+     <div class="mat-elevation-z8">
+ 
+         <table mat-table [dataSource]="dataSource">
+ 
+         
+ 
+  <div *ngFor="let item of displayedColumns, let i = index">
+   <ng-container matColumnDef="{{item}}">
+     <th mat-header-cell *matHeaderCellDef> {{item}} </th>
+     <td mat-cell *matCellDef="let element"> {{element[item]}} </td>
+ </ng-container>
+  </div>
+             
+     
+    
+           
+             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+         </table>
+ 
+        
+ 
+         <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator> -->
+     </div>
+ 
+ </div>
+ </div>
+</div>

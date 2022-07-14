@@ -1,0 +1,100 @@
+<div class="container">
+
+  <div class="col-12 col-sm-12">
+
+    <h1>Indice de Criminalidade Total </h1>
+
+    <mat-form-field>
+      <mat-label>selecione o ano</mat-label>
+      <mat-select  [(value)]="anosSelecionado" >
+        <mat-option *ngFor="let ano of anos" [value]="ano.value" (click)="GetCharts(anosSelecionado)">
+          {{ano.viewValue}}
+        </mat-option>
+      </mat-select>
+  
+    </mat-form-field>
+    
+   
+
+    <div *ngIf="!bigChart" style="display: grid; grid-template-columns:100%;justify-items: center; height: 400px; align-items: center;"><mat-spinner></mat-spinner></div>
+    
+    <app-widget-area *ngIf="bigChart" [data]="bigChart"></app-widget-area>
+
+    <mat-card>
+      <h6>Lista de cidades que abragem essas informações acima:</h6>
+      <p style="font-size: 12px; font-weight: 500;">Barra do Turvo, Bertioga, Cajati, Cananéia, Cubatão, Eldorado, Guarujá, Iguape, Ilha Comprida, Iporanga,
+        Itanhaém, Itariri, Jacupiranga, Juquiá, Miracatu, Mongaguá, Pariquera-Açu,
+        Pedro de Toledo, Peruíbe, Praia Grande, Registro, Santos, São Vicente, Sete Barras.</p>
+    </mat-card>
+  </div>
+
+  <br />
+
+  <mat-divider></mat-divider>
+
+  <br />
+
+  <div *ngIf="!controleCards" style="display: grid; grid-template-columns:25% 25% 25% 25%;justify-items: center; height: 400px; align-items: center;">
+    <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
+  </div>
+  <div
+    *ngIf="controleCards"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap="20px"
+    class="stats-cards col-12"
+  >
+
+    <mat-card *ngIf="controleCards" fxFlex="25">
+      <app-widget-card 
+        
+        label={{furtoVeliculos[0].name}}
+        total={{furtoVeliculos[0].total}}
+       
+        [data]="furtoVeliculos[0].data"
+      ></app-widget-card>
+    </mat-card>
+    <mat-card *ngIf="controleCards" fxFlex="25">
+      <app-widget-card
+        label={{rouboCarga[0].name}}
+        total={{rouboCarga[0].total}}
+      
+        [data]="rouboCarga[0].data"
+      ></app-widget-card>
+    </mat-card>
+    <mat-card *ngIf="controleCards" fxFlex="25">
+      <app-widget-card
+        label={{lesaoCorpora[0].name}}
+        total={{lesaoCorpora[0].total}}
+        percentage="30"
+        [data]="lesaoCorpora[0].data"
+      ></app-widget-card>
+    </mat-card>
+    <mat-card *ngIf="controleCards" fxFlex="25">
+      <app-widget-card
+        label={{outrosFurtos[0].name}}
+        total={{outrosFurtos[0].total}}
+        percentage="20"
+        [data]="outrosFurtos[0].data"
+      ></app-widget-card>
+    </mat-card>
+  </div>
+
+  <br />
+
+  <mat-divider></mat-divider>
+
+  <br />
+
+  <div class="d-flex justify-content-center">
+    <app-widget-pie *ngIf="pieChart" [data]="pieChart"></app-widget-pie>
+    <div *ngIf="!pieChart" style="display: grid; grid-template-columns:100%;justify-items: center; height: 400px; align-items: center;"><mat-spinner></mat-spinner></div>
+  </div>
+
+  <br />
+  <br />
+  <br />
+</div>
